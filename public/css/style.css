@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.page_top{
+    position: absolute;
+    margin-top: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to left, #0ba360 0%, #3cba92 100%);
+}
+.page_top_btn{
+
+    display: inline-block;
+}
+.page_content{
+    padding-top: 80px;
+    display: flex;
+}
+.page_title{
+    color: #ffffff;
+    padding-left: 100px;
+    padding-top: 5px;
+}
+.menu-list{
+    width: 350px;
+    height: 100vh;
+    background: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    font-size:22px;
+}
+.container{
+    margin-left:20px;
+    margin-top:100px;
+}
+
+.menu-list ul{
+    list-style: none;
+    padding:0;
+    margin:0 auto;
+}
+.menu-list ul li{
+    text-align:center;
+}
+.menu-list ul li.first-menu{
+    overflow: hidden;
+}
+.menu-list ul li:HOVER>a{
+    color: #0ba360;/*鼠标放上去的颜色*/
+}
+.menu-list ul li a{
+    display:block;
+    padding:16px 0;
+    color: #ffffff;
+    text-decoration:none;
+}
+.menu-list ul li.first-menu>a{
+    padding-left: 15px;
+}
+.menu-list ul li.first-menu.active>a{
+    color: #ffffff;/*展开子菜单后，主菜单字体颜色*/
+    vertical-align: middle;
+}
+.menu-list ul li.first-menu.active ul li.second-menu.current a{
+    background-color: #0ba360;/*子菜单点后击背景*/
+    font-size: 18px;
+}
+.menu-list ul li.first-menu ul{
+    display:none;
+}
+.menu-list ul li.first-menu ul li.second-menu a{
+    padding: 12px 0 12px 31px;
+    font-size:16px;
+    color: #ffffff;
+}
