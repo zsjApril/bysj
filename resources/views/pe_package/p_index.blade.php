@@ -5,27 +5,31 @@
 @section('style')
     @parent
     <style>
-        #panel-heading{
-            background-color:#0ba360;
-        }
-        #panel-title{
-            font-size:25px;
-            color:#ffffff;
-        }
-        label{
-            font-size:20px;
+        #panel-heading {
+            background-color: #0ba360;
         }
 
-        #import_btn{
+        #panel-title {
+            font-size: 25px;
+            color: #ffffff;
+        }
+
+        label {
+            font-size: 20px;
+        }
+
+        #import_btn {
             float: left;
             /*margin-top: 20px;*/
             margin-left: 15px;
         }
+
         /*分页控件显示在右边*/
-        #pagination{
+        #pagination {
             text-align: right;
         }
-        th,td{
+
+        th, td {
             text-align: center;
         }
     </style>
@@ -66,7 +70,9 @@
                     <tr>
                         <td class="success">{{$v->id}}</td>
                         <td class="warning">{{$v->name}}</td>
-                        <td class="danger">{{$v->content}}</td>
+                        <td class="danger">
+                            @foreach($v->items as $item) {{$item->name}} @endforeach
+                        </td>
                         <td class="info">{{$v->price}}</td>
                         <td class="active">
                             <a href="/pe_package/edit/{{$v->id}}" class="btn btn-info">修改</a>
