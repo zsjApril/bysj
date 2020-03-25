@@ -27,7 +27,8 @@ class LoginController extends Controller
             'password.required' => '请输入密码!',
         ]);
         //实例化用户对象
-        $user = User::where('name',$request->name)->firstOrFail();//获取用户信息,firstOrFail()单条结果获取
+        //获取用户信息,firstOrFail()单条结果获取
+        $user = User::where('name',$request->name)->firstOrFail();
         //验证密码
         if (Hash::check($request->password,$user->password)){
             //写入登陆状态
