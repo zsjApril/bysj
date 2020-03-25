@@ -89,36 +89,70 @@ class PackageController extends Controller
 
     public function add()
     {
-
-        return view('pe_package.p_add');
+        $pe_package = new Pe_package;
+        $itemIds = [];
+        foreach ($pe_package->items as $item) {
+            array_push($itemIds, $item->id);
+        }
+        $items = Pe_item::all()->take(10);
+        return view('pe_package.p_add',['items' => $items, 'itemIds' => $itemIds]);
     }
 
     public function insert(Request $request)
     {
 
+//        //表单验证
+//        $this->validate($request, [
+//            'name' => 'required',
+//            'content' => 'required',
+//            'price' => 'required',
+//        ], [
+//            'name.required' => '套餐名称不能省略!',
+//            'content.required' => '内容不能省略!',
+//            'price.required' => '价格不能省略!',
+//        ]);
+//
+//        //数据插入
+//        $pe_package = new Pe_package;
+//        $pe_package->name = $request->input('name');
+//        $pe_package->content = $request->input('content');
+//        $pe_package->price = $request->input('price');
+//
+//        //执行插入
+//        if ($pe_package->save()) {
+//            return redirect('/pe_package/index')->with('info', '添加成功!');
+//        } else {
+//            return back()->with('info', '添加失败!');
+//        }
+
         //表单验证
         $this->validate($request, [
             'name' => 'required',
-            'content' => 'required',
+//            'content' => 'required',
             'price' => 'required',
         ], [
             'name.required' => '套餐名称不能省略!',
-            'content.required' => '内容不能省略!',
+//            'content.required' => '内容不能省略!',
             'price.required' => '价格不能省略!',
         ]);
-
-        //数据插入
-        $pe_package = new Pe_package;
+        $pe_package = Pe_package::with(['items']);
         $pe_package->name = $request->input('name');
-        $pe_package->content = $request->input('content');
+//        $pe_package->content = $request->input('content');
         $pe_package->price = $request->input('price');
 
-        //执行插入
         if ($pe_package->save()) {
+            $items = $request->get('items');
+            foreach ($items as $item) {
+                DB::table('package_items')->insert([
+                    'package_id' => $pe_package,
+                    'item_id' => $item
+                ]);
+            }
             return redirect('/pe_package/index')->with('info', '添加成功!');
         } else {
             return back()->with('info', '添加失败!');
         }
+
     }
 
     public function import(Request $request)

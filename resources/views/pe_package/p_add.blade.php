@@ -51,10 +51,25 @@
                     <input type="text" class="form-control" name="name" value="{{old('name')}}">
                 </div>
             </div>
+            {{--<div class="form-group">--}}
+                {{--<label class="col-sm-2 control-label">套餐内容</label>--}}
+                {{--<div class="col-sm-6">--}}
+                    {{--<textarea type="text" rows="15" cols="" class="form-control"  name="content" >{{old('content')}}</textarea>--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <div class="form-group">
-                <label class="col-sm-2 control-label">套餐内容</label>
+                <label class="col-sm-2 control-label">内容</label>
                 <div class="col-sm-6">
-                    <textarea type="text" rows="15" cols="" class="form-control"  name="content" >{{old('content')}}</textarea>
+                    {{--价格你没有做数字限制，导致显示奇怪--}}
+                    @foreach($items as $item)
+                        <div>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="items[]"
+                                       @if (in_array($item->id, $itemIds)) checked @endif
+                                       value="{{$item->id}}"> {{$item->name}} (￥{{$item->price}})
+                            </label>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="form-group">

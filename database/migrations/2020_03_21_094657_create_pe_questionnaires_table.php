@@ -15,11 +15,9 @@ class CreatePeQuestionnairesTable extends Migration
     {
         Schema::create('pe_questionnaires', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('question')->comment('题目');
-            $table->string('content')->comment('其他描述');
-            $table->boolean('choose')->comment('选项');
-            $table->string('type')->comment('对应套餐类型');
-            $table->string('distinct')->comment('判断某个套餐的标志');
+            $table->string('label')->comment('题干');
+            $table->string('type')->comment('单选或多选');
+            $table->string('male')->comment('判断适用性别');
             $table->timestamps();
         });
     }

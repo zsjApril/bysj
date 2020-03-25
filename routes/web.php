@@ -62,6 +62,7 @@ Route::group(['middleware'=>'login'],function (){
 
     Route::get('/pe_items/delete/{id}','Web\ItemController@delete');
 
+
     Route::get('/pe_items/edit/{id}','Web\ItemController@edit');
 
     Route::post('/pe_items/update','Web\ItemController@update');
@@ -74,8 +75,18 @@ Route::group(['middleware'=>'login'],function (){
 
 
     //题目相关路由
-    Route::get('/pe_questionnaire/single_index','Web\QuesController@single_index');
-    Route::get('/pe_questionnaire/multiple_index','Web\QuesController@multiple_index');
+    Route::get('/pe_questionnaire/index','Web\QuesController@index');
+
+    Route::get('/pe_questionnaire/delete/{id}','Web\QuesController@delete');
+
+    Route::get('/pe_questionnaire/edit/{id}','Web\QuesController@edit');
+
+    Route::post('/pe_questionnaire/update','Web\QuesController@update');
+
+    Route::get('/pe_questionnaire/add','Web\QuesController@add');
+
+    Route::post('/pe_questionnaire/insert','Web\QuesController@insert');
+
 
 });
 

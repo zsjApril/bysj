@@ -1,6 +1,6 @@
 @extends('layout.admin')
 
-@section('title','单选题目列表')
+@section('title','题目列表')
 
 @section('style')
     @parent
@@ -40,7 +40,7 @@
     @endif
     <div class="panel panel-default">
         <div class="panel-heading" id="panel-heading">
-            <h2 class="panel-title" id="panel-title">单选题目列表</h2>
+            <h2 class="panel-title" id="panel-title">题目列表</h2>
         </div>
         <div>
             <div style="float: right">
@@ -59,29 +59,30 @@
                 <!-- On rows -->
                 <tr class="active">
                     <th>ID</th>
-                    <th>名称</th>
-                    <th>价格</th>
-                    <th>操作</th>
+                    <th>题干</th>
+                    <th>类型</th>
+                    <th>适用性别</th>
                 </tr>
                 </thead>
-                {{--<tbody>--}}
-                {{--<!-- On cells (`td` or `th`) -->--}}
-                {{--@foreach($pe_items as $k => $v)--}}
-                    {{--<tr>--}}
-                        {{--<td class="success">{{$v->id}}</td>--}}
-                        {{--<td class="warning">{{$v->name}}</td>--}}
-                        {{--<td class="danger">{{$v->price}}</td>--}}
-                        {{--<td class="info">--}}
-                            {{--<a href="/pe_items/edit/{{$v->id}}" class="btn btn-info">修改</a>--}}
-                            {{--<a href="/pe_items/delete/{{$v->id}}" class="btn btn-danger">删除</a>--}}
-                        {{--</td>--}}
-                    {{--</tr>--}}
-                {{--@endforeach--}}
-                {{--</tbody>--}}
+                <tbody>
+                <!-- On cells (`td` or `th`) -->
+                @foreach($pe_questionnaires as $k => $v)
+                    <tr>
+                        <td class="success">{{$v->id}}</td>
+                        <td class="warning">{{$v->label}}</td>
+                        <td class="danger">{{$v->type}}</td>
+                        <td class="info">{{$v->male}}</td>
+                        <td class="active">
+                            <a href="/pe_questionnaire/edit/{{$v->id}}" class="btn btn-info">修改</a>
+                            <a href="/pe_questionnaire/delete/{{$v->id}}" class="btn btn-danger">删除</a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
             </table>
-            {{--<div id="pagination">--}}
-                {{--{{ $pe_ques->appends($request->only(['keyword']))->links() }}--}}
-            {{--</div>--}}
+            <div id="pagination">
+                {{ $pe_questionnaires->appends($request->only(['keyword']))->links() }}
+            </div>
         </div>
     </div>
 @endsection
