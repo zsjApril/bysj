@@ -5,20 +5,24 @@
 @section('style')
     @parent
     <style>
-        #panel-heading{
-            background-color:#0ba360;
+        #panel-heading {
+            background-color: #0ba360;
         }
-        #panel-title{
-            font-size:25px;
-            color:#ffffff;
+
+        #panel-title {
+            font-size: 25px;
+            color: #ffffff;
         }
-        label{
-            font-size:20px;
+
+        label {
+            font-size: 20px;
         }
-        .form-horizontal{
+
+        .form-horizontal {
             padding-top: 50px;
         }
-        .form-group{
+
+        .form-group {
             margin-bottom: 40px;
             padding-left: 100px;
             padding-right: 40px;
@@ -54,13 +58,29 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">套餐内容</label>
                 <div class="col-sm-6">
-                    <textarea type="text" rows="15" cols="" class="form-control"  name="content">{{$pe_packages->content}}</textarea>
+                    <textarea type="text" rows="15" cols="" class="form-control"
+                              name="content">{{$pe_packages->content}}</textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">价格</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="price" value="{{$pe_packages->price}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">价格</label>
+                <div class="col-sm-6">
+                    {{--价格你没有做数字限制，导致显示奇怪--}}
+                    @foreach($items as $item)
+                        <div>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="items[]"
+                                       @if (in_array($item->id, $itemIds)) checked @endif
+                                       value="{{$item->id}}"> {{$item->name}} (￥{{$item->price}})
+                            </label>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
