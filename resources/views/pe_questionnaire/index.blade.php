@@ -62,6 +62,7 @@
                     <th>题干</th>
                     <th>类型</th>
                     <th>适用性别</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
