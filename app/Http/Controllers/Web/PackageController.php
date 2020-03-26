@@ -95,7 +95,7 @@ class PackageController extends Controller
             array_push($itemIds, $item->id);
         }
         $items = Pe_item::all()->take(10);
-        return view('pe_package.p_add',['items' => $items, 'itemIds' => $itemIds]);
+        return view('pe_package.p_add', ['items' => $items, 'itemIds' => $itemIds]);
     }
 
     public function insert(Request $request)
@@ -135,16 +135,17 @@ class PackageController extends Controller
 //            'content.required' => '内容不能省略!',
             'price.required' => '价格不能省略!',
         ]);
-        $pe_package = Pe_package::with(['items']);
+
+        $pe_package = new Pe_package;
         $pe_package->name = $request->input('name');
-//        $pe_package->content = $request->input('content');
+        $pe_package->content = ' ';
         $pe_package->price = $request->input('price');
 
         if ($pe_package->save()) {
             $items = $request->get('items');
             foreach ($items as $item) {
                 DB::table('package_items')->insert([
-                    'package_id' => $pe_package,
+                    'package_id' => $pe_package->id,
                     'item_id' => $item
                 ]);
             }

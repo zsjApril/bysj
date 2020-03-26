@@ -14,11 +14,11 @@
     @Section('style')
         <style>
             /*html,body{*/
-                /*height: 100%;*/
-                /*margin: 0;*/
-                /*padding: 0;*/
+            /*height: 100%;*/
+            /*margin: 0;*/
+            /*padding: 0;*/
             /*}*/
-            .page_top{
+            .page_top {
                 position: absolute;
                 margin-top: 0;
                 width: 100%;
@@ -26,82 +26,97 @@
                 background: linear-gradient(to left, #0ba360 0%, #3cba92 100%);
                 display: flex;
             }
-            .page_top_btn{
+
+            .page_top_btn {
 
                 padding-top: 25px;
             }
-            .page_content{
+
+            .page_content {
                 padding-top: 80px;
                 display: flex;
             }
-            .page_title{
+
+            .page_title {
                 color: #ffffff;
                 padding-left: 110px;
                 padding-top: 5px;
             }
-            .menu-list{
+
+            .menu-list {
                 padding-top: 50px;
 
                 width: 350px;
                 height: 100vh;
                 background: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
-                font-size:22px;
-            }
-            .container{
-                margin-left:30px;
-                margin-top:30px;
+                font-size: 22px;
             }
 
-            .menu-list ul{
+            .container {
+                margin-left: 30px;
+                margin-top: 30px;
+            }
+
+            .menu-list ul {
                 list-style: none;
                 padding-left: 30px;
                 /*padding:0;*/
-                margin:0 auto;
+                margin: 0 auto;
             }
-            .second-menu{
+
+            .second-menu {
                 padding-left: 10px;
             }
+
             /*.menu-list ul li{*/
-                /*text-align:center;*/
+            /*text-align:center;*/
             /*}*/
-            .menu-list ul li.first-menu{
+            .menu-list ul li.first-menu {
                 overflow: hidden;
             }
-            .menu-list ul li:HOVER>a{
-                color: #0ba360;/*鼠标放上去的颜色*/
+
+            .menu-list ul li:HOVER > a {
+                color: #0ba360; /*鼠标放上去的颜色*/
             }
-            .menu-list ul li a{
-                display:block;
-                padding:16px 0;
+
+            .menu-list ul li a {
+                display: block;
+                padding: 16px 0;
                 color: #ffffff;
-                text-decoration:none;
+                text-decoration: none;
             }
-            .menu-list ul li.first-menu>a{
+
+            .menu-list ul li.first-menu > a {
                 padding-left: 15px;
             }
-            .menu-list ul li.first-menu.active>a{
-                color: #ffffff;/*展开子菜单后，主菜单字体颜色*/
+
+            .menu-list ul li.first-menu.active > a {
+                color: #ffffff; /*展开子菜单后，主菜单字体颜色*/
                 vertical-align: middle;
             }
-            .menu-list ul li.first-menu.active ul li.second-menu.current a{
-                background-color: #0ba360;/*子菜单点后击背景*/
+
+            .menu-list ul li.first-menu.active ul li.second-menu.current a {
+                background-color: #0ba360; /*子菜单点后击背景*/
                 font-size: 18px;
             }
-            .menu-list ul li.first-menu ul{
-                display:none;
+
+            .menu-list ul li.first-menu ul {
+                display: none;
             }
-            .menu-list ul li.first-menu ul li.second-menu a{
+
+            .menu-list ul li.first-menu ul li.second-menu a {
                 padding: 12px 0 12px 31px;
-                font-size:16px;
+                font-size: 16px;
                 color: #ffffff;
             }
-            span{
+
+            span {
                 padding-left: 20px;
             }
         </style>
 
     @show
-<title>@yield('title')</title>
+    <title>@yield('title')</title>
 
 </head>
 <body>
@@ -181,6 +196,12 @@
                         </li>
                     </ul>
                 </li>
+                <li class="first-menu">
+                    <a href="{{url('/form')}}">
+                        <i class="glyphicon glyphicon-list-alt" style="color: #FFFFFF"></i>
+                        <span>浏览试卷</span>
+                    </a>
+                </li>
             </ul>
         </div>
         {{--主体部分--}}
@@ -198,28 +219,28 @@
 </div>
 
 </body>
-@Section('script')
-<script>
-    $(".menu-list .first-menu").click(function(){
-        $(this).addClass("active").siblings().removeClass("active");
-        $(this).find("ul").slideToggle(500);
-        $(this).siblings().find("ul").hide();
-    });
-
-    $(".menu-list .second-menu").click(function(){
-        var $this = $(this);
-        $(".second-menu").each(function () {
-            if($(this).hasClass("current")){
-                $(this).removeClass("current");
-            }
+@section('script')
+    <script>
+        $(".menu-list .first-menu").click(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+            $(this).find("ul").slideToggle(500);
+            $(this).siblings().find("ul").hide();
         });
-        $this.addClass("current").siblings().removeClass("current");
-    });
 
-    //阻止事件冒泡
-    $(".menu-list .first-menu ul").bind("click",function(event){
-        event.stopPropagation();
-    });
-</script>
+        $(".menu-list .second-menu").click(function () {
+            var $this = $(this);
+            $(".second-menu").each(function () {
+                if ($(this).hasClass("current")) {
+                    $(this).removeClass("current");
+                }
+            });
+            $this.addClass("current").siblings().removeClass("current");
+        });
+
+        //阻止事件冒泡
+        $(".menu-list .first-menu ul").bind("click", function (event) {
+            event.stopPropagation();
+        });
+    </script>
 @show
 </html>

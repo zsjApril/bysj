@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         //命令:php artisan db:seed
-//        //填充user表
+        //填充user表
 //        $arr = [];
 //        for($i=0;$i<50;$i++){
 //            $tmp = [];
