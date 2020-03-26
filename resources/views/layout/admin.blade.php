@@ -132,10 +132,10 @@
                     </a>
                     <ul>
                         <li class="second-menu">
-                            <a href="{{url('/pe_questionnaire/index')}}">单选题目列表</a>
+                            <a href="{{url('/pe_questionnaire/index')}}">题目列表</a>
                         </li>
                         <li class="second-menu">
-                            <a href="{{url('/pe_questionnaire/add')}}">添加问卷题目</a>
+                            <a href="{{url('/pe_questionnaire/add')}}">添加题目</a>
                         </li>
                     </ul>
                 </li>
